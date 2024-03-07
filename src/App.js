@@ -1,8 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
-import Formulario from './componentes/Formulario';
+import Formulario from './components/Formulario';
 
-function App() {
+export default function App() {
   return (
     <div className="container-p6">
       <Formulario/>
@@ -10,4 +9,3 @@ function App() {
   );
 }
 
-export default App;
