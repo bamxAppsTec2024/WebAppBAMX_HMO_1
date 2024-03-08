@@ -1,46 +1,43 @@
-import { useState, useEffect } from 'react';
-import { collectionGroup, getFirestore } from 'firebase/firestore';
-import app from '../firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { useState, useEffect } from "react";
+import { getFirestore } from "firebase/firestore";
+import app from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
-function useFirestoreDoc() {
+function useGetFirestoreDoc() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const db = getFirestore(app);
-  const parentCollectionName = "trainingCourses"; 
+  const collectionName = "trainingCourses";
 
   useEffect(() => {
     const unsubscribe = async () => {
       try {
-        const allSubcollections = [];
-        for (const parentId of parentDocIds) {
-          const docRef = doc(db, parentCollectionName, parentId);
-          const docSnap = await getDoc(docRef);
+        const colRef = collection(db, collectionName); // Reference to trainingCourses collection
+        const querySnapshot = await getDocs(colRef);
 
-          if (docSnap.exists) {
-            const data = docSnap.data();
-            // Assuming data has a field named 'subcollections' that holds subcollection references
-            if (data.subcollections) {
-              allSubcollections.push(...data.subcollections);
-            }
-          }
-        }
-        setSubcollections(allSubcollections);
+        const trainingCourses = [];
+
+        querySnapshot.forEach((doc) => {
+          trainingCourses.push(doc.data());
+        });
+
+        setData(trainingCourses);
       } catch (err) {
         setError(err);
       } finally {
         setLoading(false);
+        console.log(data);
       }
     };
 
     unsubscribe();
 
     return () => unsubscribe(); // Cleanup function for unsubscribe
-  }, [db, collectionName]);
+  }, []);
 
   return { data, loading, error };
 }
 
-export default useFirestoreDoc;
+export default useGetFirestoreDoc;

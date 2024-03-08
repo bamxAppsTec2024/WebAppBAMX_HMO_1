@@ -3,7 +3,7 @@ function Appbar({ title }) {
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          Navbar
+          {title}
         </a>
         <button
           className="navbar-toggler"
@@ -20,54 +20,23 @@ function Appbar({ title }) {
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <a className="nav-link active" href="#">
-                Home
-                <span className="visually-hidden">(current)</span>
+                Talleres
               </a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                Features
+                Ayuda
               </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                About
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-                href="#"
-                role="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
-                <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">
-                  Separated link
-                </a>
-              </div>
             </li>
           </ul>
-          <form className="d-flex">
+          <ul className="navbar-nav d-flex">
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Colaboradores
+              </a>
+            </li>
+          </ul>
+          {/* <form className="d-flex">
             <input
               className="form-control me-sm-2"
               type="search"
@@ -76,7 +45,7 @@ function Appbar({ title }) {
             <button className="btn btn-secondary my-2 my-sm-0" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>
