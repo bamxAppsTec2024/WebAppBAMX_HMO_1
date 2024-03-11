@@ -4,7 +4,7 @@ import styles from "./AccordionItems.module.css";
 function AccordionItems(props) {
   const { videos } = props;
 
-  const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
+  const [selectedVideoIndex, setSelectedVideoIndex] = useState(null);
 
   const handleClick = (index) => {
     setSelectedVideoIndex(index === selectedVideoIndex ? null : index);
@@ -16,6 +16,8 @@ function AccordionItems(props) {
         <div
           className={`${styles.ClickableText} ${
             selectedVideoIndex === index ? styles.Selected : ""
+          } ${
+            selectedVideoIndex == null ? "mb-3" : ""
           }`}
           key={index}
           onClick={() => handleClick(index)}
