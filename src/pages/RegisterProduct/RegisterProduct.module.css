@@ -11,8 +11,13 @@
   overflow: hidden;
 }
 
+.scrollable-container {
+  height: 400px; /* Set the height of the container */
+  overflow-y: auto; /* Enable vertical scrollbar */
+  padding-right: 15px; /* Add some padding to avoid scrollbar overlapping content */
+}
 .card {
-  width: 50vw;
+  width: 75vw;
   height: fit-content;
   background-color: #fff;
   border-radius: 10px;
@@ -28,7 +33,7 @@
 .card-header {
   font-size: 28px;
   font-weight: semi-bold;
-  color: #1c244b;
+  color: #636363;
   margin: 0;
   margin-bottom: 10px;
   text-align: center;
@@ -136,7 +141,7 @@
   font-family: "Inter";
   width: fit-content;
   height: 40px;
-  background-color: #3578ea;
+  background-color: #f79221;
   font-size: 18px;
   font-weight: semi-bold;
   color: #fff;
@@ -148,6 +153,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+input::file-selector-button {
+  font-weight: bold;
+  background-color: #f79221;
+  padding: 0.5em;
+  border-radius: 25px;
+  border:none;
+  font-family: "Inter";
+  color:white;
+  font-size: 14px;
+ 
 }
 
 /* Media Queries */
@@ -186,6 +203,11 @@
   .card {
     width: 70vw;
   }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -194,4 +216,10 @@
   .card {
     width: 50vw;
   }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
 }

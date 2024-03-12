@@ -1,0 +1,103 @@
+/* Define your color palette */
+:root {
+  --primary-color: #f79221; /* Cambiado a color primario */
+  --secondary-color: #ef2647; /* Cambiado a color secundario */
+  --background-color: #0b9444; /* Cambiado a color de fondo */
+  --text-color: #ffc700; /* Cambiado a color de texto */
+}
+/* Apply styles to the table */
+.container {
+  height: 100vh;
+  width: 100vw;
+  background: rgb(247, 146, 33);
+  background: linear-gradient(138deg, rgba(247, 146, 33, 1) 10%, rgba(239, 38, 71, 1) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.card {
+  width: 90vw;
+  height: fit-content;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 15px;
+  box-sizing: border-box;
+}
+
+.scrollable-table {
+  max-height: 400px; /* Set a fixed height */
+  overflow-y: auto; /* Add scrollbar for overflow */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  scroll-snap-align: start;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+thead {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+th:first-child, td:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+th:last-child, td:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.container h1 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .table {
+    font-size: 14px; /* Reduce font size for smaller screens */
+    width: 70vw;
+  }
+}
+
+@media (max-width: 576px) {
+  .table {
+    font-size: 12px; /* Further reduce font size for even smaller screens */
+    width: 50vw;
+  }
+}
+/* Ensure table stays inside the card */
+.card {
+  overflow-x: auto; /* Add horizontal scrollbar if table exceeds card width */
+}

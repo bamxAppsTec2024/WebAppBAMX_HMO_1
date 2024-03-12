@@ -19,6 +19,10 @@ const router = createBrowserRouter([
     element: <RegisterProduct />,
   },
   {
+    path: "/visualize",
+    element: <Tabla />
+  },
+  {
     path: "/contact",
     element: <h1>Contact</h1>,
   },

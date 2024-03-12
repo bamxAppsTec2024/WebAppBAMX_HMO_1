@@ -49,7 +49,7 @@ export default function RegisterProduct() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+    window.location.href = "/visualize";
   };
 
   return (
