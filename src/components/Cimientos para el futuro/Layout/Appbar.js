@@ -31,7 +31,7 @@ function Appbar({ title }) {
           </ul>
           <ul className="navbar-nav d-flex">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/cimientosparaelfuturo/login">
                 Colaboradores
               </a>
             </li>
