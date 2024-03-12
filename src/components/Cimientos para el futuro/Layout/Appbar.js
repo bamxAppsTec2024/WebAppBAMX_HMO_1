@@ -1,4 +1,4 @@
-function Appbar({ title }) {
+function Appbar({ title, selected }) {
   return (
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
@@ -19,19 +19,19 @@ function Appbar({ title }) {
         <div className="collapse navbar-collapse" id="navbarColor01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
+              <a className={`nav-link ${selected == 0 ? "active" : ""}`} href="#">
                 Talleres
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className={`nav-link ${selected == 1 ? "active" : ""}`} href="#">
                 Ayuda
               </a>
             </li>
           </ul>
           <ul className="navbar-nav d-flex">
             <li className="nav-item">
-              <a className="nav-link" href="/cimientosparaelfuturo/login">
+              <a className={`nav-link ${selected == 2 ? "active" : ""}`} href="/cimientosparaelfuturo/login">
                 Colaboradores
               </a>
             </li>

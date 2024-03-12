@@ -115,7 +115,7 @@ function Courses() {
 
   return (
     <div>
-      <Appbar title={"Cimientos para el futuro"} />
+      <Appbar title={"Cimientos para el futuro"} selected={0} />
       <main>
         <form className="d-flex my-2" style={{ width: "30rem" }}>
           <input
