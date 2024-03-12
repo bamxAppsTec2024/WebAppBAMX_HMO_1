@@ -1,0 +1,184 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../../../assets/bg.png);
+  background-position: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.card {
+  width: 50vw;
+  height: fit-content;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 15px;
+  box-sizing: border-box;
+}
+
+.card-header {
+  font-size: 28px;
+  font-weight: semi-bold;
+  color: #1c244b;
+  margin: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.card-body {
+  font-size: 18px;
+  font-weight: regular;
+  margin: 0;
+  text-align: center;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 30px 20px;
+  padding-bottom: 0;
+}
+
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.radio-group {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.radio-input {
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.radio-label {
+  font-size: 12px;
+  margin-right: 20px;
+}
+
+.label {
+  font-size: 12px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #c5cad1;
+  border-radius: 5px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.textarea {
+  font-family: "Inter";
+  width: 100%;
+  height: 100px;
+  border: 1px solid #c5cad1;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.button {
+  font-family: "Inter";
+  width: fit-content;
+  height: 40px;
+  background-color: #3578ea;
+  font-size: 18px;
+  font-weight: semi-bold;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 25px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Media Queries */
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (max-width: 576px) {
+  .card-header {
+    font-size: 24px;
+  }
+
+  .card-body {
+    font-size: 14px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    width: 90vw;
+    padding: 30px 0;
+  }
+
+  .label {
+    margin-left: 0;
+  }
+
+  .button {
+    font-size: 14px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+  .card {
+    width: 70vw;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+  .card {
+    width: 50vw;
+  }
+}
