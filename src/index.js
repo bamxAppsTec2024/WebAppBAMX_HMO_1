@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootswatch/dist/united/bootstrap.min.css';
+import Courses from './pages/Cimientos para el futuro/Courses/Courses';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Courses />
   </React.StrictMode>
 );
 

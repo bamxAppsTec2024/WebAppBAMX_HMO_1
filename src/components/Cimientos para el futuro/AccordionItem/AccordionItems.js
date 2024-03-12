@@ -28,7 +28,7 @@ function AccordionItems(props) {
       {videos.map((video, index) => (
         <>
           {index === selectedVideoIndex && (
-            <div className={`${styles.YoutubeIframeWrapper} mb-3`} key={index}>
+            <div className={`${styles.YoutubeIframeWrapper} mb-3`} style={{height: "fit-content"}} key={index}>
               <iframe
                 className={`${styles.YoutubeIframe} mb-2`}
                 title={video.title}

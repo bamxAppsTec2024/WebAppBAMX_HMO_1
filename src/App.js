@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Appbar } from "./Layout/Layout";
-import AccordionItems from "./componentes/Cimientos para el futuro/AccordionItem/AccordionItems";
+import { Appbar } from "./components/Cimientos para el futuro/Layout/Layout";
+import AccordionItems from "./components/Cimientos para el futuro/AccordionItem/AccordionItems";
 import useGetFirestoreDoc from "./hooks/firebaseHook";
 
 /*
@@ -178,8 +178,7 @@ function App() {
                     <p className="card-subtitle text-muted">{course.desc}</p>
                   </div>
                   <ul
-                    className="list-group list-group-flush overflow-y-auto"
-                    style={{ maxHeight: "20vh" }}
+                    className="list-group list-group-flush"
                   >
                     <AccordionItems videos={course.videos} />
                     {/* {course.videos.map((video, indexVideo) => (
