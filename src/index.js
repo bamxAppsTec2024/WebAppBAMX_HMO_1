@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import RegisterProduct from './pages/RegisterProduct/index.jsx';
 import 'bootswatch/dist/united/bootstrap.min.css';
+import Courses from './pages/Cimientos para el futuro/Courses/Courses.js';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <h1>Contact</h1>,
+  },
+  {
+    path: "/cimientosparaelfuturo",
+    element: <Courses />
   },
   {
     path: "/:path*",
