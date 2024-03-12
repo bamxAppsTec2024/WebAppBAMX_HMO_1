@@ -22,6 +22,6 @@ export default function Admin() {
     navigate("/cimientosparaelfuturo/login");
   }
   return (
-    <h1>TUKIIIIIIIIIIIIIIIIIIIIIIIIIIII {getAuth(app).currentUser.email}</h1>
+    <h1>TUKIIIIIIIIIIIIIIIIIIIIIIIIIIII {user.email}</h1>
   );
 }
