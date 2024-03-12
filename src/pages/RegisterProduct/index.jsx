@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./RegisterProduct.css";
+import styles from "./RegisterProduct.module.css";
 
 export default function RegisterProduct() {
   const inputsArray = [
@@ -53,30 +53,30 @@ export default function RegisterProduct() {
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <h1 className="card-header">Registro de Producto</h1>
-        <p className="card-body">Ingrese los datos del producto ya filtrado</p>
-        <form className="form" onSubmit={onSubmit}>
-          <div className="grid">
+    <div className={styles["container"]}>
+      <div className={styles["card"]}>
+        <h1 className={styles["card-header"]}>Registro de Producto</h1>
+        <p className={styles["card-body"]}>Ingrese los datos del producto ya filtrado</p>
+        <form className={styles["form"]} onSubmit={onSubmit}>
+          <div className={styles["grid"]}>
             {inputsArray.map((input, index) => {
               if (index === 5) return null;
 
               if (input.type === "radio") {
                 return (
-                  <div className="form-group">
-                    <label className="label" htmlFor={input.name}>
+                  <div className={styles["form-group"]}>
+                    <label className={styles["label"]} htmlFor={input.name}>
                       {input.label}
                     </label>
-                    <div className="radio-group">
+                    <div className={styles["radio-group"]}>
                       <input
                         type={input.type}
                         id={input.name}
                         name={input.name}
                         value="true"
-                        className="radio-input"
+                        className={styles["radio-input"]}
                       />
-                      <label className="radio-label" htmlFor={input.name}>
+                      <label className={styles["radio-label"]} htmlFor={input.name}>
                         Sí
                       </label>
                       <input
@@ -84,9 +84,9 @@ export default function RegisterProduct() {
                         id={input.name}
                         name={input.name}
                         value="false"
-                        className="radio-input"
+                        className={styles["radio-input"]}
                       />
-                      <label className="radio-label" htmlFor={input.name}>
+                      <label className={styles["radio-label"]} htmlFor={input.name}>
                         No
                       </label>
                     </div>
@@ -95,33 +95,33 @@ export default function RegisterProduct() {
               }
 
               return (
-                <div className="form-group">
-                  <label className="label" htmlFor={input.name}>
+                <div className={styles["form-group"]}>
+                  <label className={styles["label"]} htmlFor={input.name}>
                     {input.label}
                   </label>
                   <input
                     type={input.type}
                     id={input.name}
                     name={input.name}
-                    className="input"
+                    className={styles["input"]}
                     placeholder={input.placeholder}
                   />
                 </div>
               );
             })}
           </div>
-          <div className="form-group">
-            <label className="label" htmlFor={inputsArray[5].name}>
+          <div className={styles["form-group"]}>
+            <label className={styles["label"]} htmlFor={inputsArray[5].name}>
               {inputsArray[5].label}
             </label>
             <textarea
-              className="textarea"
+              className={styles["textarea"]}
               id={inputsArray[5].name}
               name={inputsArray[5].name}
               placeholder={inputsArray[5].placeholder}
             />
           </div>
-          <button className="button" type="submit">
+          <button className={styles["button"]} type="submit">
             Registrar Producto
           </button>
         </form>
