@@ -57,7 +57,7 @@ function LoginComponent() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {error && <div className="invalid-feedback">{error}</div>}
+          {error && <div className="invalid-feedback" style={{display: "inherit"}}>{error}</div>}
           <button type="submit" class="btn btn-primary mt-4">
             Iniciar sesión
           </button>

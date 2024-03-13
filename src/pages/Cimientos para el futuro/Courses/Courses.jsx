@@ -104,7 +104,7 @@ const useGetFirestoreDocLOCAL = () => {
 };
 
 function Courses() {
-  const { data, loading, error } = useGetFirestoreDocLOCAL();
+  const { data, loading, error } = useGetFirestoreDoc();
 
   if (loading) {
     return <p>Loading...</p>;
@@ -117,7 +117,7 @@ function Courses() {
     <div>
       <Appbar title={"Cimientos para el futuro"} selected={0} />
       <main>
-        <form className="d-flex my-2" style={{ width: "30rem" }}>
+        {/* <form className="d-flex my-2" style={{ width: "30rem" }}>
           <input
             className="form-control me-sm-2"
             type="search"
@@ -127,7 +127,7 @@ function Courses() {
           <button className="btn btn-secondary my-2 my-sm-0" type="button">
             Buscar
           </button>
-        </form>
+        </form> */}
         {data.map((category, indexCategory) => (
           <div className="my-4" key={`category${indexCategory}`}>
             <h2 role="h1" className="text-success">

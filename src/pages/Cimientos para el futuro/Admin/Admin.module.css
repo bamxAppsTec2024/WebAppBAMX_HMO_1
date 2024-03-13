@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+header {
+  background-color: #f0f0f0;
+  padding: 10px 20px;
+}
+
+main {
+  padding: 20px;
+}
+
+.ClickableText {
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.ClickableText:hover {
+  background-color: lightgray;
+}
+.Selected{
+  background-color: lightgray;
+}
