@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "bootswatch/dist/united/bootstrap.min.css";
 import "./index.css";
 import App from "./App";
 import Tabla from "./components/Tabla.jsx"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RegisterProduct from "./pages/RegisterProduct/index.jsx";
-import "bootswatch/dist/united/bootstrap.min.css";
 import Courses from "./pages/Cimientos para el futuro/Courses/Courses.jsx";
 import Login from "./pages/Cimientos para el futuro/Login/Login.jsx";
 import Admin from "./pages/Cimientos para el futuro/Admin/Admin.jsx";
