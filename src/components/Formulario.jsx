@@ -1,12 +1,14 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import styles from "../pages/RegisterProduct/RegisterProduct.module.css";
-
+import { getFirestore } from "firebase/firestore";
+import app from "../firebase";
+import { collection, getDocs, doc, updateDoc, setDoc} from "firebase/firestore";
 export default function Formulario() {
   const inputs1Array = [
     {
       id: 0,
       label: "Conductor",
-      type: "select",
+      type: "input",
       name: "name",
       placeholder: "Conductor",
     },
@@ -66,19 +68,117 @@ export default function Formulario() {
       name: "name",
       placeholder: "Razon Desperdicio",
     },
-    {
-      id: 9,
-      Label: "Fotografía",
-      type: "media",
-      name: "photo",
-      placeholder: "Foto",
-    },
   ];
 
-  const onSubmit = (e) => {
+  const [data, setData] = useState(null);
+  const [selectedDonativo, setSelectedDonativo] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const db = getFirestore(app);
+  const collectionName = "donativo";
+
+  const [conductor, setConductor] = useState("");
+  const [donante, setDonante] = useState("");
+  const [cargaCiega, setCargaCiega] = useState("");
+  const [tipoCarga, setTipoCarga] = useState("");
+  const [donativo, setDonativo] = useState("");
+  const [cantidadCarga, setCantidadCarga] = useState("");
+  const [hayDesperdicio, setHayDesperdicio] = useState("");
+  const [porcentajeDesperdicio, setPorcentajeDesperdicio] = useState("");
+  const [razonDesperdicio, setRazonDesperdicio] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const colRef = collection(db, collectionName); // Reference to trainingCourses collection
+        const querySnapshot = await getDocs(colRef);
+
+        const fetchDonativos = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setData(fetchDonativos);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+        console.log(data);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleDonativoChange = (event) => {
+    const selectedId = event.target.value;
+    const selected = data.find((donativo) => donativo.id === selectedId);
+    setSelectedDonativo(selected);
+    if (selected) {
+      setConductor(selected.conductor);
+      setDonante(selected.donante);
+      setCargaCiega(selected.cargaCiega);
+      setTipoCarga(selected.tipoCarga);
+      setDonativo(selected.donativo);
+      setCantidadCarga(selected.cantidadCarga);
+      setHayDesperdicio(selected.hayDesperdicio);
+      setPorcentajeDesperdicio(selected.porcentajeDesperdicio);
+      setRazonDesperdicio(selected.razonDesperdicio);
+      // Actualiza otros estados para los campos del formulario
+    } else {
+      // Limpiar los estados locales si no hay donativo seleccionado
+      setConductor("");
+      setDonante("");
+      setCargaCiega("");
+      setTipoCarga("");
+      setDonativo("");
+      setCantidadCarga("");
+      setHayDesperdicio("");
+      setPorcentajeDesperdicio("");
+      setRazonDesperdicio("");
+      // Limpiar otros estados para los campos del formulario
+    }
+  };
+  const onSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const docRef = doc(db, collectionName, selectedDonativo.id);
+      await updateDoc(docRef, {
+        conductor: conductor,
+        donante: donante,
+        cargaCiega: cargaCiega,
+        tipoCarga: tipoCarga,
+        donativo: donativo,
+        cantidadCarga: cantidadCarga,
+        hayDesperdicio: hayDesperdicio,
+        porcentajeDesperdicio: porcentajeDesperdicio,
+        razonDesperdicio: razonDesperdicio,
+        // Update other fields as needed
+      });
+
+      // Save the value of the 'Peso' input field to a different collection
+      const otherCollectionName = "peso";
+      const pesoValue = document.getElementById("peso").value; // Get the value of the input field
+      const otherDocData = {
+        idDonativo: selectedDonativo.id,
+        donativo: selectedDonativo.donativo,
+        pesoTotal: pesoValue,
+        // Add other fields as needed
+      };
+      await setDoc(doc(db, otherCollectionName, selectedDonativo.id), otherDocData);
+
+      console.log("Document updated successfully!");
+      // Redirect or perform other actions after successful update
+    } catch (error) {
+      console.error("Error updating document:", error);
+      // Handle error, such as displaying an error message to the user
+    }
     window.location.href = "/register";
   };
+    
+  
 
   return (
     <div className={styles["container"]}>
@@ -91,55 +191,91 @@ export default function Formulario() {
           </p>
           <form className={styles["form"]} onSubmit={onSubmit}>
             <h3>Registro de Carga / Recibimiento de Donativo</h3>
+
+            <div className="mb-6">
+              <label htmlFor="donativo" className={styles.label}>
+                Info Donativo Recibido
+              </label>
+              <select
+                className={styles.select}
+                id="donativo"
+                onChange={handleDonativoChange}
+                value={selectedDonativo ? selectedDonativo.id : ""}
+              >
+                <option value="" disabled selected>
+                  Seleccione un donativo
+                </option>
+                {data &&
+                  data.map((donativo) => (
+                    <option key={donativo.id} value={donativo.id}>
+                      {donativo.donativo} {donativo.donante}{" "}
+                      {donativo.fecha.seconds &&
+                        new Date(
+                          donativo.fecha.seconds * 1000
+                        ).toLocaleDateString()}
+                    </option>
+                  ))}
+              </select>
+            </div>
             <div className={styles["grid"]}>
               <div className="mb-3">
-                <label htmlFor={(inputs1Array.id = 0)} className={styles["label"]}>
+                <label
+                  htmlFor={(inputs1Array.id = 0)}
+                  className={styles["label"]}
+                >
                   Conductor
                 </label>
-                <select className={styles["select"]} id="0">
-                  <option selected>Conductor</option>
-                  <option value="option1">Luis</option>
-                  <option value="option2">Juan</option>
-                  <option value="option3">Pedro</option>
-                  <option value="option4">Pablo</option>
-                </select>
+                <input
+                  type="text"
+                  className={styles.input}
+                  id="conductor"
+                  value={conductor}
+                  onChange={(e) => setConductor(e.target.value)}
+                />
               </div>
               <div className="mb-3">
-                <label htmlFor={(inputs1Array.id = 1)} className={styles["label"]}>
+                <label
+                  htmlFor={(inputs1Array.id = 1)}
+                  className={styles["label"]}
+                >
                   Donante
                 </label>
-                <select className={styles["select"]} id="1">
-                  <option selected>Donante</option>
-                  <option value="option1">Walmart</option>
-                  <option value="option2">Sams</option>
-                  <option value="option3">Costco</option>
-                  <option value="option4">Oxxo</option>
-                </select>
+                <input
+                  type="text"
+                  className={styles.input}
+                  id="donante"
+                  value={donante}
+                  onChange={(e) => setDonante(e.target.value)}
+                />
               </div>
               <div className="mb-3">
                 <label className={styles["radio-label"]}>¿Carga Ciega? </label>
                 <div>
-                  <div className={styles["radio-group"]}>
+                  <div className={styles["form-check"]}>
                     <input
-                      className={styles["radio-input"]}
                       type="radio"
-                      name="respuesta"
-                      id="si"
-                      value="si"
+                      id="cargaCiegaSi"
+                      name="cargaCiegaSi"
+                      value={cargaCiega}
+                      checked={cargaCiega === "true"}
+                      onChange={(e) => setCargaCiega(e.target.value)}
+                      className={styles["radio-input"]}
                     />
-                    <label className={styles["label"]} htmlFor="si">
+                    <label className={styles["label"]} htmlFor="cargaCiegaSi">
                       Sí
                     </label>
                   </div>
-                  <div className={styles["radio-group"]}>
+                  <div className={styles["form-check"]}>
                     <input
-                      className={styles["radio-input"]}
                       type="radio"
-                      name="respuesta"
-                      id="no"
-                      value="no"
+                      id="cargaCiegaNo"
+                      name="cargaCiegaNo"
+                      value={cargaCiega}
+                      checked={cargaCiega === "false"}
+                      onChange={(e) => setCargaCiega(e.target.value)}
+                      className={styles["radio-input"]}
                     />
-                    <label className={styles["label"]} htmlFor="no">
+                    <label className={styles["label"]} htmlFor="cargaCiegaNo">
                       No
                     </label>
                   </div>
@@ -152,11 +288,13 @@ export default function Formulario() {
                     <input
                       className={styles["radio-input"]}
                       type="radio"
-                      name="opcion"
-                      id="opcion1"
-                      value="opcion1"
+                      name="perecedero"
+                      id="perecedero"
+                      value={tipoCarga}
+                      checked={tipoCarga === "Perecedero"}
+                      onChange={(e) => setCargaCiega(e.target.value)}
                     />
-                    <label className={styles["label"]} htmlFor="opcion1">
+                    <label className={styles["label"]} htmlFor="perecedero">
                       Perecedero
                     </label>
                   </div>
@@ -164,11 +302,13 @@ export default function Formulario() {
                     <input
                       className={styles["radio-input"]}
                       type="radio"
-                      name="opcion"
-                      id="opcion2"
-                      value="opcion2"
+                      name="noperecedero"
+                      id="noperecedero"
+                      value={tipoCarga}
+                      checked={tipoCarga === "No Perecedero"}
+                      onChange={(e) => setCargaCiega(e.target.value)}
                     />
-                    <label className={styles["label"]} htmlFor="opcion2">
+                    <label className={styles["label"]} htmlFor="noperecedero">
                       No Perecedero
                     </label>
                   </div>
@@ -176,114 +316,110 @@ export default function Formulario() {
                     <input
                       className={styles["radio-input"]}
                       type="radio"
-                      name="opcion"
-                      id="opcion3"
-                      value="opcion3"
+                      name="nocomestible"
+                      id="nocomestible"
+                      value={tipoCarga}
+                      checked={tipoCarga === "No Comestible"}
+                      onChange={(e) => setCargaCiega(e.target.value)}
                     />
-                    <label className={styles["label"]} htmlFor="opcion3">
+                    <label className={styles["label"]} htmlFor="nocomestible">
                       No Comestible
                     </label>
                   </div>
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="campo2" className={styles["label"]}>
+                <label htmlFor="donativonombre" className={styles["label"]}>
                   Donativo
                 </label>
-                <select className={styles["select"]} id="campo2">
-                  <option selected>Donativo</option>
-                  <option value="option1">Manzanas</option>
-                  <option value="option2">Peras</option>
-                  <option value="option3">Naranjas</option>
-                  <option value="option4">Platanos</option>
-                </select>
+                <input
+                  type="text"
+                  className={styles.input}
+                  id="donativonombre"
+                  value={donativo}
+                  onChange={(e) => setDonativo(e.target.value)}
+                />
               </div>
               <div className="mb-3">
-                <label htmlFor="campo1" className={styles["label"]}>
+                <label htmlFor="cantidadcarga" className={styles["label"]}>
                   Cantidad Carga (toneladas)
                 </label>
                 <input
                   type="number"
-                  className={styles["input"]}
-                  id="campo1"
-                  placeholder="Cantidad Carga"
+                  className={styles.input}
+                  id="cantidadcarga"
+                  value={cantidadCarga}
+                  onChange={(e) => setCantidadCarga(e.target.value)}
                 />
               </div>
               <div className="mb-3">
                 <label className={styles["label"]}>¿Hay Desperdicio? </label>
                 <div>
-                <div className={styles["radio-group"]}>
-                    <input
-                      className={styles["radio-input"]}
+                  <div className={styles["radio-group"]}>
+                  <input
                       type="radio"
-                      name="respuesta"
-                      id="si"
-                      value="si"
+                      id="hayDesperdicioSi"
+                      name="hayDesperdicioSi"
+                      value={hayDesperdicio}
+                      checked={hayDesperdicio === "true"}
+                      onChange={(e) => setHayDesperdicio(e.target.value)}
+                      className={styles["radio-input"]}
                     />
-                    <label className={styles["label"]} htmlFor="si">
+                    <label className={styles["label"]} htmlFor="hayDesperdicioSi">
                       Sí
                     </label>
                   </div>
                   <div className={styles["radio-group"]}>
-                    <input
-                      className={styles["radio-input"]}
+                  <input
                       type="radio"
-                      name="respuesta"
-                      id="no"
-                      value="no"
+                      id="hayDesperdicioNo"
+                      name="hayDesperdicioNo"
+                      value={hayDesperdicio}
+                      checked={hayDesperdicio === "false"}
+                      onChange={(e) => setHayDesperdicio(e.target.value)}
+                      className={styles["radio-input"]}
                     />
-                    <label className={styles["label"]} htmlFor="no">
+                    <label className={styles["label"]} htmlFor="hayDesperdicioNo">
                       No
                     </label>
                   </div>
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="campo2" className={styles["form-label"]}>
+                <label htmlFor="porcentajeDesperdicio" className={styles["label"]}>
                   Porcentaje Desperdicio
                 </label>
-                <select className={styles["select"]} id="campo2">
-                  <option selected>Porcentaje Desperdicio</option>
-                  <option value="option1">0%</option>
-                  <option value="option2">25%</option>
-                  <option value="option3">50%</option>
-                  <option value="option4">75%</option>
-                  <option value="option5">100%</option>
-                </select>
+                <input
+                  type="number"
+                  className={styles.input}
+                  id="porcentajeDesperdicio"
+                  value={porcentajeDesperdicio}
+                  onChange={(e) => setPorcentajeDesperdicio(e.target.value)}
+                />
               </div>
               <div className="mb-3">
-                <label htmlFor="campo2" className={styles["label"]}>
+                <label htmlFor="razonDesperdicio" className={styles["label"]}>
                   Razón Desperdicio
                 </label>
-                <select className={styles["select"]} id="campo2">
-                  <option selected>Razón Desperdicio</option>
-                  <option value="option1">Razón 1</option>
-                  <option value="option2">Razón 2</option>
-                  <option value="option3">Razón 3</option>
-                  <option value="option4">Razón 4</option>
-                  <option value="option5">Razón 5</option>
-                </select>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="fileInput">Fotografia</label>
                 <input
-                  id="fileInput"
-                  type="file"
-                  accept="image/*, video/*"
-                  className={styles["input"]}
+                  type="text"
+                  className={styles.input}
+                  id="razonDesperdicio"
+                  value={razonDesperdicio}
+                  onChange={(e) => setRazonDesperdicio(e.target.value)}
                 />
               </div>
             </div>
             <h3>Pesaje de Donativo</h3>
             {/* Repite esto para los 20 campos de texto */}
             <div className="mb-3">
-              <label htmlFor="campo20" className={styles["label"]}>
+              <label htmlFor="peso" className={styles["label"]}>
                 Peso
               </label>
               <input
                 type="number"
                 className={styles["input"]}
-                id="campo20"
+                id="peso"
                 placeholder="Peso"
               />
             </div>

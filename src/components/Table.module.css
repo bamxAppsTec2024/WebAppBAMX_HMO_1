@@ -12,14 +12,50 @@
   background: rgb(247, 146, 33);
   background: linear-gradient(138deg, rgba(247, 146, 33, 1) 10%, rgba(239, 38, 71, 1) 100%);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   overflow: hidden;
 }
+/* Apply styles to the row */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Adjust spacing between rows */
+}
 
+.row-item {
+  flex: 1;
+  padding: 10px;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.row-item:first-child {
+  margin-right: 10px; /* Adjust spacing between row items */
+}
+
+.row-item:last-child {
+  margin-left: 10px; /* Adjust spacing between row items */
+}
+
+.row-item h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.row-item p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* Apply styles to the card */
 .card {
   width: 90vw;
+  max-width: 100%; /* Set a maximum width for larger screens */
   height: fit-content;
   background-color: #fff;
   border-radius: 10px;
@@ -27,14 +63,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   padding: 30px 15px;
   box-sizing: border-box;
+  margin: 100px auto; /* Center the card horizontally and provide margin at the top and bottom */
+  overflow-x: auto; /* Add horizontal scrollbar */
+  overflow-y: auto;
 }
 
 .scrollable-table {
   max-height: 400px; /* Set a fixed height */
-  overflow-y: auto; /* Add scrollbar for overflow */
+  overflow-x: auto; /* Add horizontal scrollbar */
+  overflow-y: auto;
 }
 
 .table {
@@ -44,6 +84,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   scroll-snap-align: start;
+  min-width: 100%;
 }
 
 th, td {
@@ -85,16 +126,35 @@ th:last-child, td:last-child {
 
 /* Responsive styles */
 @media (max-width: 768px) {
+  .card {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 20px; 
+    overflow-x: auto; /* Reduce padding for smaller screens */
+  }
   .table {
     font-size: 14px; /* Reduce font size for smaller screens */
-    width: 70vw;
+    width: 90%;
+  }
+  
+  .row-item {
+    margin-right: 0; /* Remove margin between row items for smaller screens */
+    margin-left: 0; /* Remove margin between row items for smaller screens */
+  }
+
+  .row-item:first-child {
+    margin-bottom: 10px; /* Adjust spacing between row items for smaller screens */
   }
 }
 
 @media (max-width: 576px) {
+  .card {
+    width: 90%; /* Further adjust width for even smaller screens */
+    padding: 15px; 
+    overflow-x: auto; /* Further reduce padding for even smaller screens */
+  }
   .table {
     font-size: 12px; /* Further reduce font size for even smaller screens */
-    width: 50vw;
+    width: 100%;
   }
 }
 /* Ensure table stays inside the card */
