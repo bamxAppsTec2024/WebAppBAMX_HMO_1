@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import Tabla from "./components/Tabla.jsx"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RegisterProduct from "./pages/RegisterProduct/index.jsx";
 import "bootswatch/dist/united/bootstrap.min.css";

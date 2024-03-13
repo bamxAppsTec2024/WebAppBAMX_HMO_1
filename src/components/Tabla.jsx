@@ -1,5 +1,5 @@
 import React, { useEffect}from "react";
-import "./Table.css"; // Import the CSS stylesheet
+import styles from "./Table.module.css";
 
 const DataTable = () => {
   // Hardcoded data for demonstration
@@ -50,14 +50,14 @@ const DataTable = () => {
   }, []);
 
   return (
-    <div className="container">
-    <div className="scrollable-table">
-      <div className="card">
+    <div className={styles["container"]}>
+    <div className={styles["scrollable-table"]}>
+      <div className={styles["card"]}>
         <h1>Donativos</h1>
         
           {" "}
           {/* Add the scrollable-table class */}
-          <table className="table">
+          <table className={styles["table"]}>
             <thead>
               <tr>
                 {/* Define table headers */}

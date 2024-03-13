@@ -1,4 +1,5 @@
 import * as React from "react";
+import styles from "../pages/RegisterProduct/RegisterProduct.module.css";
 
 export default function Formulario() {
   const inputs1Array = [
@@ -80,22 +81,22 @@ export default function Formulario() {
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <div className="scrollable-container">
-          <h1 class="card-header">Registro de Donativo</h1>
+    <div className={styles["container"]}>
+      <div className={styles["card"]}>
+        <div className={styles["scrollable-container"]}>
+          <h1 class={styles["card-header"]}>Registro de Donativo</h1>
 
-          <p className="card-body">
+          <p className={styles["card-body"]}>
             Ingrese o Verifique los Datos del Donativo
           </p>
-          <form className="form" onSubmit={onSubmit}>
+          <form className={styles["form"]} onSubmit={onSubmit}>
             <h3>Registro de Carga / Recibimiento de Donativo</h3>
-            <div className="grid">
+            <div className={styles["grid"]}>
               <div className="mb-3">
-                <label htmlFor={(inputs1Array.id = 0)} className="label">
+                <label htmlFor={(inputs1Array.id = 0)} className={styles["label"]}>
                   Conductor
                 </label>
-                <select className="select" id="0">
+                <select className={styles["select"]} id="0">
                   <option selected>Conductor</option>
                   <option value="option1">Luis</option>
                   <option value="option2">Juan</option>
@@ -104,10 +105,10 @@ export default function Formulario() {
                 </select>
               </div>
               <div className="mb-3">
-                <label htmlFor={(inputs1Array.id = 1)} className="label">
+                <label htmlFor={(inputs1Array.id = 1)} className={styles["label"]}>
                   Donante
                 </label>
-                <select className="select" id="1">
+                <select className={styles["select"]} id="1">
                   <option selected>Donante</option>
                   <option value="option1">Walmart</option>
                   <option value="option2">Sams</option>
@@ -116,80 +117,80 @@ export default function Formulario() {
                 </select>
               </div>
               <div className="mb-3">
-                <label className="radio-label">¿Carga Ciega? </label>
+                <label className={styles["radio-label"]}>¿Carga Ciega? </label>
                 <div>
-                  <div className="radio-group">
+                  <div className={styles["radio-group"]}>
                     <input
-                      className="radio-input"
+                      className={styles["radio-input"]}
                       type="radio"
                       name="respuesta"
                       id="si"
                       value="si"
                     />
-                    <label className="label" htmlFor="si">
+                    <label className={styles["label"]} htmlFor="si">
                       Sí
                     </label>
                   </div>
-                  <div className="radio-group">
+                  <div className={styles["radio-group"]}>
                     <input
-                      className="radio-input"
+                      className={styles["radio-input"]}
                       type="radio"
                       name="respuesta"
                       id="no"
                       value="no"
                     />
-                    <label className="label" htmlFor="no">
+                    <label className={styles["label"]} htmlFor="no">
                       No
                     </label>
                   </div>
                 </div>
               </div>
               <div className="mb-3">
-                <label className="label">Tipo de Carga </label>
+                <label className={styles["label"]}>Tipo de Carga </label>
                 <div>
-                  <div className="form-check">
+                  <div className={styles["form-check"]}>
                     <input
-                      className="radio-input"
+                      className={styles["radio-input"]}
                       type="radio"
                       name="opcion"
                       id="opcion1"
                       value="opcion1"
                     />
-                    <label className="label" htmlFor="opcion1">
+                    <label className={styles["label"]} htmlFor="opcion1">
                       Perecedero
                     </label>
                   </div>
-                  <div className="form-check">
+                  <div className={styles["form-check"]}>
                     <input
-                      className="radio-input"
+                      className={styles["radio-input"]}
                       type="radio"
                       name="opcion"
                       id="opcion2"
                       value="opcion2"
                     />
-                    <label className="label" htmlFor="opcion2">
+                    <label className={styles["label"]} htmlFor="opcion2">
                       No Perecedero
                     </label>
                   </div>
-                  <div className="form-check">
+                  <div className={styles["form-check"]}>
                     <input
-                      className="radio-input"
+                      className={styles["radio-input"]}
                       type="radio"
                       name="opcion"
                       id="opcion3"
                       value="opcion3"
                     />
-                    <label className="label" htmlFor="opcion3">
+                    <label className={styles["label"]} htmlFor="opcion3">
                       No Comestible
                     </label>
                   </div>
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="campo2" className="label">
+                <label htmlFor="campo2" className={styles["label"]}>
                   Donativo
                 </label>
-                <select className="select" id="campo2">
+                <select className={styles["select"]} id="campo2">
                   <option selected>Donativo</option>
                   <option value="option1">Manzanas</option>
                   <option value="option2">Peras</option>
@@ -198,50 +199,50 @@ export default function Formulario() {
                 </select>
               </div>
               <div className="mb-3">
-                <label htmlFor="campo1" className="label">
+                <label htmlFor="campo1" className={styles["label"]}>
                   Cantidad Carga (toneladas)
                 </label>
                 <input
                   type="number"
-                  className="input"
+                  className={styles["input"]}
                   id="campo1"
                   placeholder="Cantidad Carga"
                 />
               </div>
               <div className="mb-3">
-                <label className="label">¿Hay Desperdicio? </label>
+                <label className={styles["label"]}>¿Hay Desperdicio? </label>
                 <div>
-                  <div className="form-check form-check-inline">
+                <div className={styles["radio-group"]}>
                     <input
-                      className="radio-input"
+                      className={styles["radio-input"]}
                       type="radio"
                       name="respuesta"
                       id="si"
                       value="si"
                     />
-                    <label className="form-check-label" htmlFor="si">
+                    <label className={styles["label"]} htmlFor="si">
                       Sí
                     </label>
                   </div>
-                  <div className="form-check form-check-inline">
+                  <div className={styles["radio-group"]}>
                     <input
-                      className="radio-input"
+                      className={styles["radio-input"]}
                       type="radio"
                       name="respuesta"
                       id="no"
                       value="no"
                     />
-                    <label className="form-check-label" htmlFor="no">
+                    <label className={styles["label"]} htmlFor="no">
                       No
                     </label>
                   </div>
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="campo2" className="form-label">
+                <label htmlFor="campo2" className={styles["form-label"]}>
                   Porcentaje Desperdicio
                 </label>
-                <select className="select" id="campo2">
+                <select className={styles["select"]} id="campo2">
                   <option selected>Porcentaje Desperdicio</option>
                   <option value="option1">0%</option>
                   <option value="option2">25%</option>
@@ -251,10 +252,10 @@ export default function Formulario() {
                 </select>
               </div>
               <div className="mb-3">
-                <label htmlFor="campo2" className="label">
+                <label htmlFor="campo2" className={styles["label"]}>
                   Razón Desperdicio
                 </label>
-                <select className="select" id="campo2">
+                <select className={styles["select"]} id="campo2">
                   <option selected>Razón Desperdicio</option>
                   <option value="option1">Razón 1</option>
                   <option value="option2">Razón 2</option>
@@ -269,25 +270,25 @@ export default function Formulario() {
                   id="fileInput"
                   type="file"
                   accept="image/*, video/*"
-                  className="input"
+                  className={styles["input"]}
                 />
               </div>
             </div>
             <h3>Pesaje de Donativo</h3>
             {/* Repite esto para los 20 campos de texto */}
             <div className="mb-3">
-              <label htmlFor="campo20" className="label">
+              <label htmlFor="campo20" className={styles["label"]}>
                 Peso
               </label>
               <input
                 type="number"
-                className="input"
+                className={styles["input"]}
                 id="campo20"
                 placeholder="Peso"
               />
             </div>
             <div style={{ marginTop: "3vh" }}>
-              <button className="button" type="submit">
+              <button className={styles["button"]} type="submit">
                 Registra Donativo
               </button>
             </div>
