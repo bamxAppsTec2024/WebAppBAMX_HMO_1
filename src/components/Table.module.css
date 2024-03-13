@@ -9,13 +9,8 @@
 .container {
   height: 100vh;
   width: 100vw;
-  background: rgb(247, 146, 33);
-  background: linear-gradient(138deg, rgba(247, 146, 33, 1) 10%, rgba(239, 38, 71, 1) 100%);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  overflow: scroll;
   box-sizing: border-box;
-  overflow: hidden;
 }
 /* Apply styles to the row */
 .row {
@@ -87,7 +82,8 @@
   min-width: 100%;
 }
 
-th, td {
+th,
+td {
   padding: 12px;
   text-align: left;
 }
@@ -109,12 +105,14 @@ td {
   border-bottom: 1px solid #ddd;
 }
 
-th:first-child, td:first-child {
+th:first-child,
+td:first-child {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
-th:last-child, td:last-child {
+th:last-child,
+td:last-child {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -128,14 +126,14 @@ th:last-child, td:last-child {
 @media (max-width: 768px) {
   .card {
     width: 90%; /* Adjust width for smaller screens */
-    padding: 20px; 
+    padding: 20px;
     overflow-x: auto; /* Reduce padding for smaller screens */
   }
   .table {
     font-size: 14px; /* Reduce font size for smaller screens */
     width: 90%;
   }
-  
+
   .row-item {
     margin-right: 0; /* Remove margin between row items for smaller screens */
     margin-left: 0; /* Remove margin between row items for smaller screens */
@@ -149,7 +147,7 @@ th:last-child, td:last-child {
 @media (max-width: 576px) {
   .card {
     width: 90%; /* Further adjust width for even smaller screens */
-    padding: 15px; 
+    padding: 15px;
     overflow-x: auto; /* Further reduce padding for even smaller screens */
   }
   .table {

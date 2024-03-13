@@ -41,7 +41,7 @@ const DataTable = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <Navbar/>
       <div className={styles["row"]}>
         <div className="col-md-12">

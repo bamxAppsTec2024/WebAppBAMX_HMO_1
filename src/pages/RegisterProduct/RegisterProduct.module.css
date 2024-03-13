@@ -1,12 +1,15 @@
 .container {
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../../../assets/bg.png);
-  background-position: cover;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../../../assets/bg.png);
+  background-size: cover;
   background-repeat: no-repeat;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  row-gap: 20px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -64,6 +67,30 @@
   grid-gap: 10px;
   box-sizing: border-box;
   margin-bottom: 10px;
+}
+
+.productivity-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.productivity-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+.productivity-body {
+  font-size: 18px;
+  font-weight: regular;
+  margin: 0;
+  text-align: center;
+  color: #f79221;
 }
 
 .form-group {
@@ -160,11 +187,10 @@ input::file-selector-button {
   background-color: #f79221;
   padding: 0.5em;
   border-radius: 25px;
-  border:none;
+  border: none;
   font-family: "Inter";
-  color:white;
+  color: white;
   font-size: 14px;
- 
 }
 
 /* Media Queries */
@@ -221,5 +247,4 @@ input::file-selector-button {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
-  
 }
