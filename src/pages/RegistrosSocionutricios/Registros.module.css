@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.item {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.button {
+    background-color: lightgray;
+    border: 0px;
+    border-radius: 5px;
+    font-size: large;
+}
+
+.detailsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 2%;
+}

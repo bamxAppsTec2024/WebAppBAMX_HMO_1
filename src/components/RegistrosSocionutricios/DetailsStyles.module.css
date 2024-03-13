@@ -1,0 +1,9 @@
+.dataContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.dataContainer > p {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}

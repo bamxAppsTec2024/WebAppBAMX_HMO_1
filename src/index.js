@@ -9,6 +9,7 @@ import "bootswatch/dist/united/bootstrap.min.css";
 import Courses from "./pages/Cimientos para el futuro/Courses/Courses.jsx";
 import Login from "./pages/Cimientos para el futuro/Login/Login.jsx";
 import Admin from "./pages/Cimientos para el futuro/Admin/Admin.jsx";
+import SocionutricioList from "./pages/RegistrosSocionutricios/index.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/cimientosparaelfuturo/admin",
     element: <Admin />,
+  },
+  {
+    path: "/socionutricio",
+    element: <SocionutricioList />,
   },
   {
     path: "/:path*",
