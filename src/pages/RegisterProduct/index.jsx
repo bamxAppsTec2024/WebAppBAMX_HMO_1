@@ -3,7 +3,7 @@ import styles from "./RegisterProduct.module.css";
 import { getFirestore } from "firebase/firestore";
 import app from "../../firebase";
 import { collection, doc, updateDoc, setDoc, addDoc } from "firebase/firestore";
-
+import Navbar from '../../components/Navbar';
 export default function RegisterProduct() {
   const inputsArray = [
     {
@@ -86,6 +86,8 @@ export default function RegisterProduct() {
   };
 
   return (
+    <div>
+    <Navbar/>
     <div className={styles["container"]}>
       <div className={styles["card"]}>
         <h1 className={styles["card-header"]}>Registro de Producto</h1>
@@ -196,6 +198,7 @@ export default function RegisterProduct() {
          </div>
         </form>
       </div>
+    </div>
     </div>
   );
 }
